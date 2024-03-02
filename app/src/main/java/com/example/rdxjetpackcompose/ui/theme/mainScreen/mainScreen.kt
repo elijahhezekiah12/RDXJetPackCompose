@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import com.example.rdxjetpackcompose.R
 import com.example.rdxjetpackcompose.di.SharedPreferencesStorage
@@ -35,9 +36,9 @@ import com.example.rdxjetpackcompose.ui.theme.RDXJetPackComposeTheme
 fun MainScreen(navController: NavController) {
 
     val context = LocalContext.current
-    val SharedPreferencesStorage = SharedPreferencesStorage(context)
-    var preferencesManager = PreferencesManager(context,SharedPreferencesStorage(context).sharedPreferencesInject())
-    val viewModel = mainScreenViewModel (context,preferencesManager)
+    SharedPreferencesStorage(context)
+    val preferencesManager = PreferencesManager(context,SharedPreferencesStorage(context).sharedPreferencesInject())
+    val viewModel = mainScreenViewModel (preferencesManager, SavedStateHandle())
     RDXJetPackComposeTheme {
         Surface {
             Column(
@@ -62,22 +63,27 @@ fun MainScreen(navController: NavController) {
                     style = MaterialTheme.typography.bodyLarge
                 )
 
-                Text(
-                    text = viewModel.setUserFirstName(),
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.titleLarge
-                )
+                viewModel.saveFirstName(viewModel.setUserFirstName())
+
+               Text(
+                        text = viewModel.getFirstName()?.ifEmpty { "Ella" }?:"Ella",
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.titleLarge
+                    )
+
 
                 Spacer(modifier = Modifier.padding(8.dp))
+
 
 
                 Text(
                     text = stringResource(id = R.string.last_name),
                     style = MaterialTheme.typography.bodyLarge
                 )
+                viewModel.saveLastName(viewModel.setUserLastName())
 
                 Text(
-                    text = viewModel.setUserLastName()?.ifEmpty { "Smith" } ?: "Smith" ,
+                    text = viewModel.getLastName()?.ifEmpty { "Smith" } ?: "Smith" ,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleLarge
                 )
@@ -87,8 +93,10 @@ fun MainScreen(navController: NavController) {
                     style = MaterialTheme.typography.bodyLarge
                 )
 
+                viewModel.saveTelephone(viewModel.setUserTelephone())
+
                 Text(
-                    text = viewModel.setUserTelephone()?.ifEmpty { "077777777" } ?:"077777777" ,
+                    text = viewModel.getTelephone()?.ifEmpty { "077777777" } ?:"077777777" ,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleLarge
                 )
@@ -98,8 +106,10 @@ fun MainScreen(navController: NavController) {
                     style = MaterialTheme.typography.bodyLarge
                 )
 
+                viewModel.saveEmail(viewModel.setUserEmail())
+
                 Text(
-                    text = viewModel.setUserEmail()?.ifEmpty { "ellla_smith@rdx.com" } ?:"ellla_smith@rdx.com" ,
+                    text = viewModel.getEmail()?.ifEmpty { "ellla_smith@rdx.com" } ?:"ellla_smith@rdx.com" ,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleLarge
                 )

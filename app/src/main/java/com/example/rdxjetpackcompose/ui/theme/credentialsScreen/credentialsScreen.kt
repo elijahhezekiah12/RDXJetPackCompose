@@ -1,6 +1,5 @@
 package com.example.rdxjetpackcompose.ui.theme.credentialsScreen
 
-import android.content.SharedPreferences
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -37,7 +36,6 @@ import com.example.rdxjetpackcompose.di.SharedPreferencesStorage
 import com.example.rdxjetpackcompose.service.PreferencesManager
 import com.example.rdxjetpackcompose.ui.theme.NavGraph.NavigationItem
 import com.example.rdxjetpackcompose.ui.theme.RDXJetPackComposeTheme
-import com.example.rdxjetpackcompose.ui.theme.mainScreen.mainScreenViewModel
 import com.example.rdxjetpackcompose.util.Constants.EMAIL
 
 
@@ -130,6 +128,3 @@ fun CredentialsScreen(navController: NavController) {
 
 }
 
-fun checkCredentials(email :String, password:String):Boolean{
-      return  email.isNotEmpty() && password.isNotEmpty()
-}

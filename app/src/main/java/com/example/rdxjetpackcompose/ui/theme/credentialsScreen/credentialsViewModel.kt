@@ -7,7 +7,6 @@ class credentialsViewModel:ViewModel() {
 
     fun validateEmail(email:String): Boolean {
 
-            return !email.isNullOrBlank() && emailPattern.matcher(email).matches()
-
+            return email.isNotBlank() && emailPattern.matcher(email).matches()
     }
 }

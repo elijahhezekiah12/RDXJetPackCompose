@@ -1,6 +1,6 @@
 package com.example.rdxjetpackcompose.ui.theme.mainScreen
 
-import android.content.Context
+import androidx.lifecycle.SavedStateHandle
 
 import androidx.lifecycle.ViewModel
 import com.example.rdxjetpackcompose.service.PreferencesManager
@@ -11,32 +11,63 @@ import com.example.rdxjetpackcompose.util.Constants.SIGNED_STATUS
 import com.example.rdxjetpackcompose.util.Constants.TELEPHONE
 
 class mainScreenViewModel(
-    context: Context,
-    val preferencesManager: PreferencesManager
+    val preferencesManager: PreferencesManager,
+    val state: SavedStateHandle
 ) :ViewModel() {
-
-
-    //var preferencesManager = PreferencesManager(context)
 
     fun isUserSigned(isSigned :Boolean):Boolean{
          preferencesManager.saveSignedStatus(SIGNED_STATUS,isSigned)
         return preferencesManager.getSignedStatus(SIGNED_STATUS,true)
     }
 
+
     fun setUserFirstName(): String {
         return  preferencesManager.getData(FIRST_NAME,"")
     }
 
-    fun setUserLastName():String? {
+    fun saveFirstName(name: String) {
+        state[FIRST_NAME] = name
+    }
+
+    fun getFirstName(): String? {
+        return state.get<String>(FIRST_NAME)
+    }
+
+
+    fun setUserLastName():String {
         return preferencesManager.getData(LAST_NAME,"")
     }
 
+    fun saveLastName(name: String) {
+        state[LAST_NAME] = name
+    }
 
-    fun setUserTelephone(): String? {
+    fun getLastName(): String? {
+        return state.get<String>(LAST_NAME)
+    }
+
+
+    fun setUserTelephone(): String {
        return  preferencesManager.getData(TELEPHONE,"")
     }
 
-    fun setUserEmail(): String? {
+    fun saveTelephone(name: String) {
+        state[TELEPHONE] = name
+    }
+
+    fun getTelephone(): String? {
+        return state.get<String>(TELEPHONE)
+    }
+
+    fun setUserEmail(): String {
         return  preferencesManager.getData(EMAIL,"")
+    }
+
+    fun saveEmail(name: String) {
+        state[EMAIL] = name
+    }
+
+    fun getEmail(): String? {
+        return state.get<String>(EMAIL)
     }
 }
