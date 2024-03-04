@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.rdxjetpackcompose.service.PreferencesManager
 import com.example.rdxjetpackcompose.util.Constants.EMAIL
 import com.example.rdxjetpackcompose.util.Constants.FIRST_NAME
+import com.example.rdxjetpackcompose.util.Constants.FIRST_NAME_SAVED_INSTANCE
 import com.example.rdxjetpackcompose.util.Constants.LAST_NAME
 import com.example.rdxjetpackcompose.util.Constants.SIGNED_STATUS
 import com.example.rdxjetpackcompose.util.Constants.TELEPHONE
@@ -20,22 +21,24 @@ class mainScreenViewModel(
         return preferencesManager.getSignedStatus(SIGNED_STATUS,true)
     }
 
-
-    fun setUserFirstName(): String {
-        return  preferencesManager.getData(FIRST_NAME,"")
+    var firstNameSaved =  preferencesManager.getData(FIRST_NAME,"")
+    fun setUserFirstName(firstNameLocal :String): String {
+        return   firstNameLocal
     }
+
 
     fun saveFirstName(name: String) {
-        state[FIRST_NAME] = name
+        state[FIRST_NAME_SAVED_INSTANCE] = name
     }
+
 
     fun getFirstName(): String? {
-        return state.get<String>(FIRST_NAME)
+        return state.get<String>(FIRST_NAME_SAVED_INSTANCE)
     }
 
-
-    fun setUserLastName():String {
-        return preferencesManager.getData(LAST_NAME,"")
+    var lastNameSaved =  preferencesManager.getData(LAST_NAME,"")
+    fun setUserLastName(lastNameLocal:String):String {
+        return lastNameLocal
     }
 
     fun saveLastName(name: String) {
@@ -47,8 +50,10 @@ class mainScreenViewModel(
     }
 
 
-    fun setUserTelephone(): String {
-       return  preferencesManager.getData(TELEPHONE,"")
+    var telephoneSaved =  preferencesManager.getData(TELEPHONE,"")
+
+    fun setUserTelephone(telephoneLocal:String): String {
+       return  telephoneLocal
     }
 
     fun saveTelephone(name: String) {
@@ -59,8 +64,10 @@ class mainScreenViewModel(
         return state.get<String>(TELEPHONE)
     }
 
-    fun setUserEmail(): String {
-        return  preferencesManager.getData(EMAIL,"")
+    var emailSaved =  preferencesManager.getData(EMAIL,"")
+
+    fun setUserEmail(emailLocal:String): String {
+        return  emailLocal
     }
 
     fun saveEmail(name: String) {

@@ -63,7 +63,7 @@ fun MainScreen(navController: NavController) {
                     style = MaterialTheme.typography.bodyLarge
                 )
 
-                viewModel.saveFirstName(viewModel.setUserFirstName())
+                viewModel.saveFirstName(viewModel.setUserFirstName(viewModel.firstNameSaved))
 
                Text(
                         text = viewModel.getFirstName()?.ifEmpty { "Ella" }?:"Ella",
@@ -80,7 +80,7 @@ fun MainScreen(navController: NavController) {
                     text = stringResource(id = R.string.last_name),
                     style = MaterialTheme.typography.bodyLarge
                 )
-                viewModel.saveLastName(viewModel.setUserLastName())
+                viewModel.saveLastName(viewModel.setUserLastName(viewModel.lastNameSaved))
 
                 Text(
                     text = viewModel.getLastName()?.ifEmpty { "Smith" } ?: "Smith" ,
@@ -93,7 +93,7 @@ fun MainScreen(navController: NavController) {
                     style = MaterialTheme.typography.bodyLarge
                 )
 
-                viewModel.saveTelephone(viewModel.setUserTelephone())
+                viewModel.saveTelephone(viewModel.setUserTelephone(viewModel.telephoneSaved))
 
                 Text(
                     text = viewModel.getTelephone()?.ifEmpty { "077777777" } ?:"077777777" ,
@@ -106,7 +106,7 @@ fun MainScreen(navController: NavController) {
                     style = MaterialTheme.typography.bodyLarge
                 )
 
-                viewModel.saveEmail(viewModel.setUserEmail())
+                viewModel.saveEmail(viewModel.setUserEmail(viewModel.emailSaved))
 
                 Text(
                     text = viewModel.getEmail()?.ifEmpty { "ellla_smith@rdx.com" } ?:"ellla_smith@rdx.com" ,

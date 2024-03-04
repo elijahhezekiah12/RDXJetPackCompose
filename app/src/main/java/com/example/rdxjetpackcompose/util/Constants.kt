@@ -14,6 +14,8 @@ object Constants {
 
     const val SIGNED_STATUS:String="USERS_SIGNED_IN"
 
+    const val FIRST_NAME_SAVED_INSTANCE:String="FIRST_NAME"
+
     /**
      * Check if the email is valid
      */

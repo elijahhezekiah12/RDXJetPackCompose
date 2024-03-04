@@ -11,13 +11,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
-
+@Config(manifest=Config.NONE)
 @RunWith(RobolectricTestRunner::class)
 class MainScreenViewModelTest {
 
 
-    lateinit var testObject: mainScreenViewModel
+    private lateinit var testObject: mainScreenViewModel
 
     @Mock
     private lateinit var sharedPreferences: SharedPreferences
@@ -50,26 +51,26 @@ class MainScreenViewModelTest {
 
     @Test
     fun testFirstName() {
-        val result = testObject.setUserFirstName()
-        assert(result != "Ellla")
+        val result = testObject.setUserFirstName("Ella")
+        assert(result == "Ella")
 
     }
 
     @Test
     fun setUserLastName() {
-        val result = testObject.setUserLastName()
-        assert(result != "Ellla")
+        val result = testObject.setUserLastName("Smith")
+        assert(result == "Smith")
     }
 
     @Test
     fun setUserTelephone() {
-        val result = testObject.setUserTelephone()
-        assert(result != "Ellla")
+        val result = testObject.setUserTelephone("077777777")
+        assert(result == "077777777")
     }
 
     @Test
     fun setUserEmail() {
-        val result = testObject.setUserLastName()
-        assert(result != "Ellla")
+        val result = testObject.setUserLastName("ellla_smith@rdx.com")
+        assert(result == "ellla_smith@rdx.com")
     }
 }
